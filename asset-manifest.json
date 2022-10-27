@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.191cfd90.css",
-    "main.js": "/static/js/main.2642c16f.js",
-    "index.html": "/index.html",
-    "main.191cfd90.css.map": "/static/css/main.191cfd90.css.map",
-    "main.2642c16f.js.map": "/static/js/main.2642c16f.js.map"
+    "main.css": "/geekbrains_reactjs/static/css/main.191cfd90.css",
+    "main.js": "/geekbrains_reactjs/static/js/main.2642c16f.js",
+    "index.html": "/geekbrains_reactjs/index.html",
+    "main.191cfd90.css.map": "/geekbrains_reactjs/static/css/main.191cfd90.css.map",
+    "main.2642c16f.js.map": "/geekbrains_reactjs/static/js/main.2642c16f.js.map"
   },
   "entrypoints": [
     "static/css/main.191cfd90.css",

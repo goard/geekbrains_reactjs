@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { useState } from 'react'
 import { Message } from './Message'
 import {
   Typography,
@@ -9,30 +8,23 @@ import {
   Box,
   List,
   ListItem,
+  Button,
 } from '@mui/material'
+import { useDispatch, useSelector } from 'react-redux'
+import { getDataJsonPlaceholder } from '../../features/fetchApiSlice'
+import { SUCCESS, FAILED } from '../../constVariable'
+import { deleteMessage } from '../../features/fetchApiSlice'
 
 function LoadMessage() {
-  const [messageList, setMessageList] = useState([])
-  const [loading, setLoading] = useState(false)
+  const dispatch = useDispatch()
+  const stateJsonPlaceholder = useSelector((state) => state.fetchJP)
 
   useEffect(() => {
-    ;(async function () {
-      setLoading(true)
-      try {
-        const response = await fetch(
-          'https://jsonplaceholder.typicode.com/users?_start=0&_end=3'
-        )
-        const data = await response.json()
-        setMessageList(data)
-        setLoading(false)
-      } catch (error) {
-        console.error(error)
-        setLoading(false)
-      }
-    })()
+    dispatch(getDataJsonPlaceholder())
   }, [])
+  console.log('state', stateJsonPlaceholder)
 
-  if (loading) {
+  if (stateJsonPlaceholder.status !== SUCCESS) {
     return (
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <CircularProgress />
@@ -40,9 +32,17 @@ function LoadMessage() {
     )
   }
 
+  if (stateJsonPlaceholder.status === FAILED) {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        Error load payload. Try again.
+      </Box>
+    )
+  }
+
   return (
     <Container style={{ paddingTop: '40px' }} maxWidth="md">
-      {messageList.map((el) => (
+      {stateJsonPlaceholder.data.map((el) => (
         <List
           key={el.id}
           style={{
@@ -53,18 +53,26 @@ function LoadMessage() {
         >
           <Grid>
             <ListItem>
-              <Typography>Name: {el.name}</Typography>
+              <Typography>user: {el.userId}</Typography>
             </ListItem>
             <ListItem>
-              <Typography>Email: {el.email}</Typography>
+              <Typography>Title: {el.title}</Typography>
             </ListItem>
             <ListItem>
-              <Typography>Phone: {el.phone}</Typography>
+              <Typography>Body: {el.body}</Typography>
             </ListItem>
+            <Button
+              variant="contained"
+              onClick={() => {
+                dispatch(deleteMessage(el.id))
+              }}
+            >
+              Delete message
+            </Button>
           </Grid>
-          <Message data={el} />
         </List>
       ))}
+      <Message />
     </Container>
   )
 }

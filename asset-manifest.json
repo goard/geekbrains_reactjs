@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/geekbrains_reactjs/static/css/main.2aaf7a72.css",
-    "main.js": "/geekbrains_reactjs/static/js/main.082c1c38.js",
+    "main.css": "/geekbrains_reactjs/static/css/main.d2b901ec.css",
+    "main.js": "/geekbrains_reactjs/static/js/main.3a978d79.js",
     "index.html": "/geekbrains_reactjs/index.html",
-    "main.2aaf7a72.css.map": "/geekbrains_reactjs/static/css/main.2aaf7a72.css.map",
-    "main.082c1c38.js.map": "/geekbrains_reactjs/static/js/main.082c1c38.js.map"
+    "main.d2b901ec.css.map": "/geekbrains_reactjs/static/css/main.d2b901ec.css.map",
+    "main.3a978d79.js.map": "/geekbrains_reactjs/static/js/main.3a978d79.js.map"
   },
   "entrypoints": [
-    "static/css/main.2aaf7a72.css",
-    "static/js/main.082c1c38.js"
+    "static/css/main.d2b901ec.css",
+    "static/js/main.3a978d79.js"
   ]
 }

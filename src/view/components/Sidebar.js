@@ -14,6 +14,7 @@ import {
   AlertCircle as AlertCircleIcon,
   BarChart as BarChartIcon,
   User as UserIcon,
+  Image as ImageIcon,
 } from 'react-feather'
 import NavItem from './NavItem'
 
@@ -33,6 +34,11 @@ const items = [
     href: '/account',
     icon: UserIcon,
     title: 'Account',
+  },
+  {
+    href: '/images',
+    icon: ImageIcon,
+    title: 'Images',
   },
   {
     href: '/404',

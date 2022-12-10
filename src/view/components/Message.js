@@ -54,7 +54,7 @@ export const Message = () => {
           value={formInput.title}
           placeholder="title"
           onChange={handleChange}
-          ref={refInput}
+          inputRef={refInput}
         />
         <InputCustom
           name="body"
@@ -63,7 +63,7 @@ export const Message = () => {
           value={formInput.body}
           placeholder="body"
           onChange={handleChange}
-          ref={refInput}
+          inputRef={refInput}
         />
 
         <ButtonCustom type="submit" variant="contained">

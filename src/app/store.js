@@ -7,11 +7,12 @@ import { persistStore, persistReducer } from 'redux-persist'
 import thunk from 'redux-thunk'
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
 import formReducer from '../features/formSlice'
+import fetchPicsumReducer from '../features/fetchImagesApiSlice'
 
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['form'],
+  blacklist: ['form', 'images'],
   stateReconciler: autoMergeLevel2,
 }
 
@@ -19,6 +20,7 @@ const reducers = combineReducers({
   fetchJP: fetchJsonPlaceholderReducer,
   checkbox: checkboxReducer,
   form: formReducer,
+  images: fetchPicsumReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, reducers)

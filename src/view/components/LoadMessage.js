@@ -23,7 +23,6 @@ function LoadMessage() {
     dispatch(getDataJsonPlaceholder())
     // eslint-disable-next-line
   }, [])
-  console.log('state', stateJsonPlaceholder)
 
   if (stateJsonPlaceholder.status !== SUCCESS) {
     return (

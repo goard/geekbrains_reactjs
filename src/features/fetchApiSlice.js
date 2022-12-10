@@ -19,10 +19,13 @@ const fetchJsonPlaceholder = () => {
   })
 }
 
-export const getDataJsonPlaceholder = createAsyncThunk('get', async () => {
-  const data = await fetchJsonPlaceholder()
-  return data
-})
+export const getDataJsonPlaceholder = createAsyncThunk(
+  'get/posts',
+  async () => {
+    const data = await fetchJsonPlaceholder()
+    return data
+  }
+)
 
 export const fetchJsonPlaceholderSlice = createSlice({
   name: 'fetchJsonPlaceholder',

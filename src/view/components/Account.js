@@ -10,7 +10,6 @@ const Account = () => {
     dispatch(checked(id))
   }
 
-  console.log('checkbox', checkbox)
   return (
     <>
       <h1>Account</h1>

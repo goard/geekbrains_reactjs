@@ -1,17 +1,15 @@
 import { useState, useRef, useEffect } from 'react'
 import style from './Message.module.css'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addMessage } from '../../features/fetchApiSlice'
+import { changeInput, clearForm } from '../../features/formSlice'
+import InputCustom from '../ui/Input'
+import ButtonCustom from '../ui/Button'
 
 export const Message = () => {
   const dispatch = useDispatch()
+  const formInput = useSelector((state) => state.form.form)
   const refInput = useRef()
-  const [formList, setFormLst] = useState({
-    userId: null,
-    id: null,
-    title: '',
-    body: '',
-  })
   const [send, setSend] = useState(0)
 
   const randomId = () => {
@@ -22,12 +20,16 @@ export const Message = () => {
     event.preventDefault()
     const userId = randomId()
     const id = Date.now()
-    setFormLst({ ...formList, userId, id })
+
     setTimeout(() => {
-      dispatch(addMessage(formList))
+      dispatch(addMessage({ ...formInput, userId, id }))
+      dispatch(clearForm())
       setSend((prev) => prev + 1)
-      setFormLst({ userId: null, title: '', body: '' })
     }, 1000)
+  }
+
+  const handleChange = (event) => {
+    dispatch(changeInput({ [event.target.name]: event.target.value }))
   }
 
   useEffect(() => {
@@ -42,32 +44,31 @@ export const Message = () => {
         style={{
           display: 'flex',
           flexDirection: 'column',
+          marginBottom: '55px',
         }}
       >
-        <input
+        <InputCustom
           name="title"
           className={style.Message}
           type="text"
-          value={formList.title}
+          value={formInput.title}
           placeholder="title"
-          onChange={(event) => {
-            setFormLst({ ...formList, [event.target.name]: event.target.value })
-          }}
+          onChange={handleChange}
           ref={refInput}
         />
-        <input
+        <InputCustom
           name="body"
           className={style.Message}
           type="text"
-          value={formList.body}
+          value={formInput.body}
           placeholder="body"
-          onChange={(event) => {
-            setFormLst({ ...formList, [event.target.name]: event.target.value })
-          }}
+          onChange={handleChange}
           ref={refInput}
         />
 
-        <input type="submit" value="Submit" />
+        <ButtonCustom type="submit" variant="contained">
+          Submit
+        </ButtonCustom>
       </form>
     </div>
   )

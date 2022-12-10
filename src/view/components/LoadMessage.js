@@ -8,12 +8,12 @@ import {
   Box,
   List,
   ListItem,
-  Button,
 } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import { getDataJsonPlaceholder } from '../../features/fetchApiSlice'
 import { SUCCESS, FAILED } from '../../constVariable'
 import { deleteMessage } from '../../features/fetchApiSlice'
+import ButtonCustom from '../ui/Button'
 
 function LoadMessage() {
   const dispatch = useDispatch()
@@ -21,6 +21,7 @@ function LoadMessage() {
 
   useEffect(() => {
     dispatch(getDataJsonPlaceholder())
+    // eslint-disable-next-line
   }, [])
   console.log('state', stateJsonPlaceholder)
 
@@ -61,14 +62,14 @@ function LoadMessage() {
             <ListItem>
               <Typography>Body: {el.body}</Typography>
             </ListItem>
-            <Button
+            <ButtonCustom
               variant="contained"
               onClick={() => {
                 dispatch(deleteMessage(el.id))
               }}
             >
               Delete message
-            </Button>
+            </ButtonCustom>
           </Grid>
         </List>
       ))}

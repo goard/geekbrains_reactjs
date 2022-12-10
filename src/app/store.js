@@ -1,10 +1,32 @@
 import { configureStore } from '@reduxjs/toolkit'
 import fetchJsonPlaceholderReducer from '../features/fetchApiSlice'
 import checkboxReducer from '../features/checkboxSlice'
+import { combineReducers } from 'redux'
+import storage from 'redux-persist/lib/storage'
+import { persistStore, persistReducer } from 'redux-persist'
+import thunk from 'redux-thunk'
+import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
+import formReducer from '../features/formSlice'
+
+const persistConfig = {
+  key: 'root',
+  storage,
+  blacklist: ['form'],
+  stateReconciler: autoMergeLevel2,
+}
+
+const reducers = combineReducers({
+  fetchJP: fetchJsonPlaceholderReducer,
+  checkbox: checkboxReducer,
+  form: formReducer,
+})
+
+const persistedReducer = persistReducer(persistConfig, reducers)
 
 export const store = configureStore({
-  reducer: {
-    fetchJP: fetchJsonPlaceholderReducer,
-    checkbox: checkboxReducer,
-  },
+  reducer: persistedReducer,
+  devTools: process.env.NODE_ENV !== 'production',
+  middleware: [thunk],
 })
+
+export const persistor = persistStore(store)

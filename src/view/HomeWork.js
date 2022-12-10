@@ -11,27 +11,20 @@ import {
   List,
   ListItem,
 } from '@mui/material'
+import { useDispatch, useSelector } from 'react-redux'
+import { getDataJsonPlaceholder } from '../features/fetchApiSlice'
 
 function App() {
   const [messageList, setMessageList] = useState([])
   const [loading, setLoading] = useState(false)
+  const dispatch = useDispatch()
+  const stateJsonPlaceholder = useSelector((state) => state.fetchJP)
 
   useEffect(() => {
-    ;(async function () {
-      setLoading(true)
-      try {
-        const response = await fetch(
-          'https://jsonplaceholder.typicode.com/users?_start=0&_end=3'
-        )
-        const data = await response.json()
-        setMessageList(data)
-        setLoading(false)
-      } catch (error) {
-        console.error(error)
-        setLoading(false)
-      }
-    })()
+    dispatch(getDataJsonPlaceholder())
   }, [])
+
+  console.log('state', stateJsonPlaceholder)
 
   if (loading) {
     return (

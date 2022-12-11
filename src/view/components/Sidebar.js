@@ -15,6 +15,8 @@ import {
   BarChart as BarChartIcon,
   User as UserIcon,
   Image as ImageIcon,
+  LogIn as LogInIcon,
+  UserPlus as UserPlusIcon,
 } from 'react-feather'
 import NavItem from './NavItem'
 
@@ -39,6 +41,16 @@ const items = [
     href: '/images',
     icon: ImageIcon,
     title: 'Images',
+  },
+  {
+    href: '/signin',
+    icon: LogInIcon,
+    title: 'Sign In',
+  },
+  {
+    href: '/signup',
+    icon: UserPlusIcon,
+    title: 'Sign Up',
   },
   {
     href: '/404',

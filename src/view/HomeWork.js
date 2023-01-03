@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 import './App.css'
-import { Message } from './view/components/Message'
+// import { Message } from './view/components/Message'
 import {
   Typography,
   Container,
@@ -24,12 +24,11 @@ function App() {
     dispatch(getDataJsonPlaceholder())
   }, [])
 
-  console.log('state', stateJsonPlaceholder)
-
   if (loading) {
     return (
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <CircularProgress />
+        <Box>Not messages</Box>
       </Box>
     )
   }
@@ -56,7 +55,7 @@ function App() {
               <Typography>Phone: {el.phone}</Typography>
             </ListItem>
           </Grid>
-          <Message data={el} />
+          {/* <Message data={el} /> */}
         </List>
       ))}
     </Container>

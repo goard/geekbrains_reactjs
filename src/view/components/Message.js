@@ -5,12 +5,14 @@ import { addMessage } from '../../features/fetchApiSlice'
 import { changeInput, clearForm } from '../../features/formSlice'
 import InputCustom from '../ui/Input'
 import ButtonCustom from '../ui/Button'
+import { useDataBase } from '../../hook/db.hook'
 
 export const Message = () => {
   const dispatch = useDispatch()
   const formInput = useSelector((state) => state.form.form)
   const refInput = useRef()
   const [send, setSend] = useState(0)
+  const { pushData } = useDataBase()
 
   const randomId = () => {
     return Math.floor(Math.random() * 10)
@@ -23,6 +25,7 @@ export const Message = () => {
 
     setTimeout(() => {
       dispatch(addMessage({ ...formInput, userId, id }))
+      pushData({ ...formInput, userId, id })
       dispatch(clearForm())
       setSend((prev) => prev + 1)
     }, 1000)

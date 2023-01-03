@@ -8,6 +8,7 @@ import thunk from 'redux-thunk'
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
 import formReducer from '../features/formSlice'
 import fetchPicsumReducer from '../features/fetchImagesApiSlice'
+import fetchAuthStateReducer from '../features/authFirebaseSlice'
 
 const persistConfig = {
   key: 'root',
@@ -21,6 +22,7 @@ const reducers = combineReducers({
   checkbox: checkboxReducer,
   form: formReducer,
   images: fetchPicsumReducer,
+  fetchAuthState: fetchAuthStateReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, reducers)
